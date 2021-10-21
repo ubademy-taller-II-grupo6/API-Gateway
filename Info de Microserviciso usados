@@ -1,0 +1,42 @@
+Log
+
+post https://aqueous-everglades-25138.herokuapp.com/users
+{
+  "userId": "pininoMas@hotmail.com",
+  "nivel": "Info",
+  "fecha": "10/10/2021",
+  "hora": "10:41:34 AM",
+  "descripcion": "Usuario logueda con exito"
+}
+
+GET https://aqueous-everglades-25138.herokuapp.com/users
+GET https://aqueous-everglades-25138.herokuapp.com/users/Info
+
+
+Back office
+
+GET https://calm-shore-44525.herokuapp.com/user/admin@gmail.com
+POST https://calm-shore-44525.herokuapp.com/user
+{
+    "email": "admin@gmail.com",
+    "contraseña": "webadmin",
+    "nombre": "Admin",
+    "apellido": "Admin"
+}
+
+
+BackEnd
+GET https://obscure-wildwood-00771.herokuapp.com/users/profiles
+POST https://obscure-wildwood-00771.herokuapp.com/users/registration
+{
+  "name": "marcos",
+  "lastname": "riarte",
+  "email": "mriarte@fi.uba.ar",
+  "password": "taller2F",
+  "profile": 1
+}
+POST https://obscure-wildwood-00771.herokuapp.com/users/login
+{
+  "email": "mriarte@fi.uba.ar",
+  "password": "taller2F"
+}
