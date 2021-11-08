@@ -2,8 +2,7 @@ import requests
 
 class DinamycRouter:
 
-
- def _init_self(self,url):
+ def __init__(self, url):
     self.url = url
 
  def getUrl(self):
@@ -19,4 +18,5 @@ class DinamycRouter:
  #{'firstname':'Ryan', 'lastname':'Mitchell'}#
  def POSTJson(self, json):
     resp = requests.post(self.url, data=json)
-    return resp.status_code
+    #return resp.status_code
+    return resp

@@ -14,7 +14,7 @@ GET https://aqueous-everglades-25138.herokuapp.com/users/Info
 
 
 Back office
-
+"https://calm-shore-44525.herokuapp.com/"
 GET https://calm-shore-44525.herokuapp.com/user/admin@gmail.com
 POST https://calm-shore-44525.herokuapp.com/user
 {
