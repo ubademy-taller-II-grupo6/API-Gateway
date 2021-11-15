@@ -1,22 +1,14 @@
-from fastapi import APIRouter, Header
+from fastapi import APIRouter, Depends, Header
 from models.register import Register
 from models.login import Login
 from models.administrator import Administrator
 from router.DinamycRouter import DinamycRouter
 from schemas.administrator import administratorEntity, administratorsEntity
-
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from autenticacion.utils import validar_token
 
-import firebase_admin
-
-from firebase_admin import credentials
-from firebase_admin import auth
-
-
-
 APIGateway = APIRouter()
-
 
 #Crea el registro del usuario, devuelve el status code
 @APIGateway.post('/user/resgister')
@@ -27,9 +19,10 @@ def create_register(register: Register):
 
 #Autenticacion por token
 @APIGateway.post('/user/auth')
-def verify_login(authorization: str = Header(None)):
-    id_token = authorization.split(' ')[1]  #Separa la cadena y toma el codigo de token (sin "Beareer")
-    return validar_token(id_token)
+def verify_login(authorization: HTTPAuthorizationCredentials=Depends(HTTPBearer(auto_error=False))):
+    #return authorization
+    #id_token = authorization.split(' ')[1] #Separa la cadena y toma el codigo de token (sin "Beareer")
+    return validar_token(authorization.credentials)
 
 
 
