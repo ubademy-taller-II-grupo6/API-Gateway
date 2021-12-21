@@ -17,3 +17,7 @@ Firebase</br>
 # Funcionalidad</br>
 -Autenticacion de usario usando firebase</br>
 #Microservicios usados</br>
+
+Como ejecutar:</br>
+Dentro del proyecto </br>
+sudo uvicorn app:app --reload</br>
