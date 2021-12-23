@@ -16,5 +16,5 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, 
 app.include_router(APIGateway)
 
 if __name__ == '__main__':
-    uvicorn.run('app:app', host='0.0.0.0', port=int(os.environ.get('PORT')), reload=True)
-   #uvicorn.run('app:app')
+  #  uvicorn.run('app:app', host='0.0.0.0', port=int(os.environ.get('PORT')), reload=True)
+  uvicorn.run('app:app')

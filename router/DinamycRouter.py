@@ -1,4 +1,6 @@
 import requests
+from schemas.user import userEntity
+import json
 
 class DinamycRouter:
 
@@ -16,7 +18,15 @@ class DinamycRouter:
    return respuesta
 
  #{'firstname':'Ryan', 'lastname':'Mitchell'}#
- def POSTJson(self, json):
-    resp = requests.post(self.url, data=json)
+ def POSTJson(self, diccionary):
+    entity = json.dumps(diccionary)
+    resp = requests.post(self.url, data=entity)
     #return resp.status_code
-    return resp
+    return resp.json()
+
+ def PUTJson(self, diccionary):
+     entity = json.dumps(diccionary)
+     resp = requests.put(self.url, data=entity)
+     #return resp.status_code
+     return resp.json()
+

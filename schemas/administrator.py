@@ -1,6 +1,6 @@
 def administratorEntity(item) -> dict:
     return {
-            "email": str(item["email"]),
+            "email": item["email"],
             "contraseña": item["contraseña"],
             "nombre": item["nombre"],
             "apellido": item["apellido"]
