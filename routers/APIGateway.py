@@ -9,7 +9,7 @@ from router.DinamycRouter import DinamycRouter
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 APIGateway = APIRouter()
-cred = credentials.Certificate('/home/marcos/PycharmProjects/API-Gateway/ubademy-apigateway-firebase-adminsdk-hbeag-c06eb7278c.json')
+cred = credentials.Certificate('./ubademy-apigateway-firebase-adminsdk-hbeag-c06eb7278c.json')
 default_app = firebase_admin.initialize_app(cred)
 
 
@@ -89,24 +89,23 @@ def verify_login(cred: HTTPAuthorizationCredentials = Depends(HTTPBearer(auto_er
             headers={'WWW-Authenticate': 'Bearer realm="auth_required"'},
         )
     try:
-        decoded_token = auth.verify_id_token(cred.credentials)
-        aud = decoded_token['aud']
-        id_project = default_app.project_id
-        if aud == id_project:
+       decoded_token = auth.verify_id_token(cred.credentials)
+       aud = decoded_token['aud']
+       id_project = default_app.project_id
+       if aud == id_project:
             return "Autorizado"
-        else:
-            default_app.delete()
+       else:
+            # default_app.delete()
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail=f"Token invalido",
                 headers={'WWW-Authenticate': 'Bearer error="invalid_token"'},
             )
-
     except Exception as err:
-        raise HTTPException(
+           raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Invalid authentication credentials. {err}",
             headers={'WWW-Authenticate': 'Bearer error="invalid_token"'},
-        )
+           )
 
 
