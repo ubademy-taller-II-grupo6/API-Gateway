@@ -95,6 +95,8 @@ def deposit_amounth (deposit: Deposit):
     servicePay = DinamycRouter("https://infinite-caverns-43846.herokuapp.com/deposit")
     return servicePay.POSTJson(new_deposit)
 
+#Autenticacion y autorizacion
+
 #Autenticacion por token
 @APIGateway.get('/user/get_token/{mail}&{password}')
 def get_user_token(mail: str, password: str):
