@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from firebase_admin import credentials, auth
 from autenticacion.get_Token import get_token
 from models.administrator import Administrator
+from models.deposit import Deposit
 from models.user import User
 from models.userExt import UserExt
 from router.DinamycRouter import DinamycRouter
@@ -73,6 +74,26 @@ def find_all_admins(userId: str, password: str):
     service = DinamycRouter("https://calm-shore-44525.herokuapp.com/login/?email="+userId+"&contraseña="+password)
     return service.GETJson()
 
+#Sistema de pagos
+
+#Obtener la billetera del usuario (direccion del block chain y clave)
+@APIGateway.get('/user/wallet/{userid}')
+def get_wallet(userId: str):
+    service = DinamycRouter("https://infinite-caverns-43846.herokuapp.com/wallet/"+userId)
+    return service.GETJson()
+
+#Obtener todas las billeteras de todos los usuarios
+@APIGateway.get('/user/all_wallets')
+def get_all_wallets():
+    service = DinamycRouter("https://infinite-caverns-43846.herokuapp.com/wallet")
+    return service.GETJson()
+
+#Realiza un pago en ethers para un user id
+@APIGateway.post('/user/deposit')
+def deposit_amounth (deposit: Deposit):
+    new_deposit = dict(deposit)
+    servicePay = DinamycRouter("https://infinite-caverns-43846.herokuapp.com/deposit")
+    return servicePay.POSTJson(new_deposit)
 
 #Autenticacion por token
 @APIGateway.get('/user/get_token/{mail}&{password}')
