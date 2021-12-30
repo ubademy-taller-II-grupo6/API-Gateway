@@ -90,7 +90,7 @@ def get_all_wallets():
 
 #Realiza un pago en ethers para un user id
 @APIGateway.post('/user/deposit')
-def deposit_amounth (deposit: Deposit):
+def deposit_amounth(deposit: Deposit):
     new_deposit = dict(deposit)
     servicePay = DinamycRouter("https://infinite-caverns-43846.herokuapp.com/deposit")
     return servicePay.POSTJson(new_deposit)
